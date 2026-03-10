@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+    <h1>Calculator</h1>
+
+    <input type="text" id="searchInput" placeholder="Search operation...">
+    <button onclick="searchOperation()">Search</button>
+    <p id="searchResult"></p>
+
+    <table border="1">
+        <tr>
+            <td><label for="num1">First Number:</label></td>
+            <td><input type="number" name="num1" id="num1" value="0"></td>
+        </tr>
+        <tr>
+            <td><label for="num2">Second Number:</label></td>
+            <td><input type="number" name="num2" id="num2" value="0"></td>
+        </tr>
+        <tr>
+            <td><label for="result">Result:</label></td>
+            <td><input type="text" name="result" id="result" readonly></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="button" onclick="calculate('add')">ADD</button>
+                <button type="button" onclick="calculate('subtract')">SUBTRACT</button>
+                <button type="button" onclick="calculate('multiply')">MULTIPLY</button>
+                <button type="button" onclick="calculate('divide')">DIVIDE</button>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <script>
+        function calculate(operation) {
+            let num1 = Number(document.getElementById("num1").value);
+            let num2 = Number(document.getElementById("num2").value);
+            let result;
+
+            if (operation == 'add') {
+                result = num1 + num2;
+            } else if (operation == 'subtract') {
+                result = num1 - num2;
+            } else if (operation == 'multiply') {
+                result = num1 * num2;
+            } else if (operation == 'divide') {
+                if (num2 == 0) {
+                    document.getElementById("result").value = "Cannot divide by zero";
+                    return;
+                } else {
+                    result = num1 / num2;
+                }
+            }
+
+            document.getElementById("result").value = result;
+            console.log(result);
+        }
+
+        function searchOperation() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let message = "";
+
+            if (input == "add") {
+                message = "Addition adds two numbers.";
+            } else if (input == "subtract") {
+                message = "Subtraction subtracts the second number from the first.";
+            } else if (input == "multiply") {
+                message = "Multiplication multiplies two numbers.";
+            } else if (input == "divide") {
+                message = "Division divides the first number by the second.";
+            } else {
+                message = "Operation not found.";
+            }
+
+            document.getElementById("searchResult").innerText = message;
+        }
+    </script>
+</body>
+</html>
