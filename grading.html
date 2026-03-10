@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="grade" id="grade">
+    <button onclick="calc()">Calculate</button>
+
+    <input type="text" name="grade" id="grade">
+    <button onclick="calc()">Calculate</button>
+
+    <script>
+        function calc() {
+            let grade = Number(document.getElementById("grade").value);
+
+            if (grade < 50) {
+                alert("loser");
+            } else if (grade >= 50 && grade < 60) {
+                alert("failed");
+            } else if (grade >= 60 && grade < 75) {
+                alert("Conditional Pass");
+            } else if (grade >= 75 && grade <= 100) {
+                alert("Pass");
+            } else {
+                alert("Invalid Input");
+            }
+
+        }
+    </script>
+</body>
+</html>

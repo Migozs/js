@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simple Student Registration</title>
+</head>
+<body>
+    <h2>Student Registration Form-C</h2>
+    
+    <button onclick="create()">Create</button>
+    <button onclick="retrieve()">Retrieve</button>
+    <button onclick="update()">Update</button>
+    <button onclick="searchStudent()">Search</button>
+    
+    <br><br>
+    
+    <form>
+        <label>Student #:</label>
+        <input type="text" id="studentId"><br>
+        
+        <label>Student Name:</label>
+        <input type="text" id="studentName"><br>
+        
+        <label>Program:</label>
+        <input type="text" id="program"><br>
+        
+        <label>College:</label>
+        <input type="text" id="college"><br>
+    </form>
+    
+    <br>
+    
+    <p id="demo"></p>
+    
+    <br>
+    
+    <button onclick="register()">Register</button>
+    
+    <script>
+        function create() {
+            document.getElementById("studentId").value = "";
+            document.getElementById("studentName").value = "";
+            document.getElementById("program").value = "";
+            document.getElementById("college").value = "";
+            document.getElementById("demo").innerHTML = "Ready to create new student.";
+        }
+        
+        function retrieve() {
+            let id = document.getElementById("studentId").value;
+            if (id) {
+                document.getElementById("demo").innerHTML = "Retrieving student #: " + id;
+            } else {
+                document.getElementById("demo").innerHTML = "Please enter Student #";
+            }
+        }
+        
+        function update() {
+            let name = document.getElementById("studentName").value;
+            if (name) {
+                document.getElementById("demo").innerHTML = "Updating student: " + name;
+            } else {
+                document.getElementById("demo").innerHTML = "No name entered.";
+            }
+        }
+        
+        function searchStudent() {
+            let id = prompt("Enter Student # to search:");
+            if (id) {
+                document.getElementById("demo").innerHTML = "Searching for student #: " + id;
+                document.getElementById("studentId").value = id;
+            }
+        }
+        
+        function register() {
+            let id = document.getElementById("studentId").value;
+            let name = document.getElementById("studentName").value;
+            let program = document.getElementById("program").value;
+            let college = document.getElementById("college").value;
+            
+            if (id && name && program && college) {
+                document.getElementById("demo").innerHTML = "✅ Student Registered: " + name + " (" + program + " - " + college + ")";
+            } else {
+                document.getElementById("demo").innerHTML = "⚠️ Please fill out all fields.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="clickme()">Click Me</button>
+    <p id="demo" onmouseover="hoverme()" onmouseout="unhoverme()">Your name will appear here.</p>
+
+    <script>
+        function clickme() {
+            let name = prompt("Enter your name: ");
+            document.getElementById("demo").innerHTML = name;
+        }
+        function hoverme() {
+            document.getElementById("demo").style.color = "green";
+        }
+        function unhoverme() {
+            document.getElementById("demo").style.color = "yellow";
+        }
+    </script>
+
+</body>
+</html>

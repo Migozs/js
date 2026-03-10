@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <title>Form Validation</title>
+</head>
+<body>
+    <input type="text" id="username" placeholder="Username (min 5 chars)">
+    <p id="usernameHelp"></p>
+    <input type="password" id="password" placeholder="Password">
+    <p id="passwordHelp"></p>
+    <button id="submit">Submit</button>
+
+    <script>
+        document.getElementById("username").addEventListener("keyup", function() {
+            let username = this.value;
+            if(username.length < 5) {
+                document.getElementById("usernameHelp").innerHTML = "Too short!";
+                document.getElementById("usernameHelp").style.color = "red";
+            } else {
+                document.getElementById("usernameHelp").innerHTML = "Good!";
+                document.getElementById("usernameHelp").style.color = "green";
+            }
+        });
+        
+        document.getElementById("password").addEventListener("keyup", function() {
+            let password = this.value;
+            if(password.length < 8) {
+                document.getElementById("passwordHelp").innerHTML = "Password too weak!";
+                document.getElementById("passwordHelp").style.color = "red";
+            } else {
+                document.getElementById("passwordHelp").innerHTML = "Strong password!";
+                document.getElementById("passwordHelp").style.color = "green";
+            }
+        });
+    </script>
+</body>
+</html>

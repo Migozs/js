@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <button id="addItem">Add Item</button>
+    <ul id="list"></ul>
+
+    <script>
+        document.getElementById("addItem").addEventListener("click",function(){
+            let time = new Date().toLocaleTimeString();
+            let li = document.createElement("li");
+            li.innerHTML = "Item added at " + time;
+
+            document.getElementById("list").appendChild(li);
+        });
+
+    </script>
+
+</body>
+</html>

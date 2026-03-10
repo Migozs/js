@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Interactive Page</title>
+</head>
+<body>
+    <p id="demo">hello world</p>
+    
+    <button onclick="clickme()">Click me!</button>
+    <button onclick="howerme()">Red</button>
+    <button onclick="unhowerme()">Black</button>
+
+    <br><br>
+    
+    <table border="1" id="infoTable">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Course</th>
+        </tr>
+        <tr>
+            <td id="nameCell">-</td>
+            <td id="ageCell">-</td>
+            <td id="courseCell">-</td>
+        </tr>
+    </table>
+    
+    <br>
+    <button onclick="addToTable()">Add to Table</button>
+
+    <script>
+        function clickme() {
+            let name = prompt("Enter your name: ");
+            document.getElementById("demo").innerHTML = name;
+        }
+        
+        function howerme() {
+            document.getElementById("demo").style.color = "red";
+        }
+        
+        function unhowerme() {
+            document.getElementById("demo").style.color = "black";
+        }
+        
+        function addToTable() {
+            let name = prompt("Enter name:");
+            let age = prompt("Enter age:");
+            let course = prompt("Enter course:");
+            
+            document.getElementById("nameCell").innerHTML = name;
+            document.getElementById("ageCell").innerHTML = age;
+            document.getElementById("courseCell").innerHTML = course;
+        }
+    </script>
+</body>
+</html>

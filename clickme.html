@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+    function clickme() {
+        let name = prompt("Enter your name: ");
+        document.getElementById("demo").innerHTML = name;
+    }
+    function howerme() {
+        document.getElementById("demo").style.color = "red";
+    }
+    function unhowerme() {
+        document.getElementById("demo").style.color = "black";
+    }
+    </script>
+</head>
+<body>
+    <p id="demo">hello world</p>
+    <button onclick="clickme()">Click me!</button>
+</body>
+</html>

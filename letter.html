@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <p class="message">Message 1</p>
+    <p class="message">Message 2</p>
+    <button onclick="sendMsg()">Add Paragraph</button>
+
+    <script>
+        function sendMsg() {
+            let msg = document.querySelectorAll(".message");
+
+            for(let i=0; i<msg.length; i++) {
+                msg[i].style.color = "red";
+            }
+
+            let p = document.createElement("p");
+            p.innerHTML = "this is a new paragraph";
+            document.body.appendChild(p);
+        }
+
+    </script>
+
+</body>
+</html>

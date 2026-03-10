@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student Registration Form-C</title>
+</head>
+<body>
+    <button onclick="showCreate()">Create</button>
+    <button onclick="showRetrieve()">Retrieve</button>
+    <button onclick="showUpdate()">Update</button>
+    <button onclick="showSearch()">Search</button>
+    <br><br>
+    <form id="regForm">
+        <label>Student #:</label><input type="text" id="studentId" readonly><br>
+        <label>Student Name:</label><input type="text" id="studentName"><br>
+        <label>Program Code:</label><input type="text" id="programCode"><br>
+        <label>Program Desc:</label><input type="text" id="programDesc"><br>
+        <label>College Code:</label><input type="text" id="collegeCode"><br>
+        <label>College Desc:</label><input type="text" id="collegeDesc"><br>
+    </form>
+    <br>
+    <table border="1" id="studentTable">
+        <thead><tr><th>S#</th><th>Student Name</th><th>Program Code</th><th>Program Desc</th><th>College Code</th><th>College Desc</th><th>Action</th></tr></thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+    <br>
+    <button onclick="adopt()">Adopt</button>
+    <button onclick="vote()">Vote</button>
+    <button onclick="select()">Select</button>
+    <button onclick="score()">Score</button>
+    <button onclick="register()">Register</button>
+    
+    <script>
+        let students = {123:{id:123,name:'Encode Glade',progCode:'BSIT',progDesc:'',collCode:'CICT',collDesc:''}};
+        let currentId = 123, hintShown = false;
+        
+        function displayTable() {
+            let html = '';
+            for(let id in students) {
+                let s = students[id];
+                html += `<tr><td>${s.id}</td><td>${s.name}</td><td>${s.progCode}</td><td>${s.progDesc}</td><td>${s.collCode}</td><td>${s.collDesc}</td>
+                <td><button onclick="viewStudent(${s.id})">👁️ View</button><button onclick="deleteStudent(${s.id})">🗑️ Delete</button></td></tr>`;
+            }
+            document.getElementById('tableBody').innerHTML = html;
+        }
+        
+        function viewStudent(id) {
+            let s = students[id];
+            document.getElementById('studentId').value = s.id;
+            document.getElementById('studentName').value = s.name;
+            document.getElementById('programCode').value = s.progCode;
+            document.getElementById('programDesc').value = s.progDesc;
+            document.getElementById('collegeCode').value = s.collCode;
+            document.getElementById('collegeDesc').value = s.collDesc;
+        }
+
+        function deleteStudent(id) {
+            if(confirm('Delete?')) { delete students[id]; displayTable(); showCreate(); }
+        }
+
+        function showCreate() {
+            document.getElementById('studentId').value = '';
+            document.getElementById('studentName').value = '';
+            document.getElementById('programCode').value = '';
+            document.getElementById('programDesc').value = '';
+            document.getElementById('collegeCode').value = '';
+            document.getElementById('collegeDesc').value = '';
+        }
+
+        function showRetrieve() { displayTable(); }
+
+        function showUpdate() {
+            let id = document.getElementById('studentId').value;
+            if(id && students[id]) {
+                students[id].name = document.getElementById('studentName').value;
+                students[id].progCode = document.getElementById('programCode').value;
+                students[id].progDesc = document.getElementById('programDesc').value;
+                students[id].collCode = document.getElementById('collegeCode').value;
+                students[id].collDesc = document.getElementById('collegeDesc').value;
+                displayTable();
+            }
+        }
+
+        function showSearch() {
+            let id = prompt('Enter Student #:');
+            if(id && students[id]) {
+                viewStudent(id);
+                if(!hintShown) { alert('👤 Person in white uniform knows something...'); hintShown = true; }
+            } else if(id) alert('Not found!');
+        }
+
+        function adopt() {
+            let id = ++currentId;
+            students[id] = {id:id,name:'New Student',progCode:'',progDesc:'',collCode:'',collDesc:''};
+            displayTable(); viewStudent(id);
+        }
+
+        function vote() { alert('Vote for students'); }
+        function select() { let id = prompt('Enter Student #:'); if(id && students[id]) viewStudent(id); }
+        function score() { alert('Total students: ' + Object.keys(students).length); }
+
+        function register() {
+            let id = document.getElementById('studentId').value;
+            if(id) {
+                students[id] = {
+                    id:id, name:document.getElementById('studentName').value,
+                    progCode:document.getElementById('programCode').value,
+                    progDesc:document.getElementById('programDesc').value,
+                    collCode:document.getElementById('collegeCode').value,
+                    collDesc:document.getElementById('collegeDesc').value
+                };
+                if(id > currentId) currentId = parseInt(id);
+                displayTable(); alert('Registered!');
+            }
+        }
+
+        document.querySelector('button[onclick="showSearch()"]').onmouseover = function() {
+            if(!hintShown) this.title = '👤 Person in white uniform is hiding something...';
+        };
+
+        displayTable();
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <title>π Calculator</title>
+</head>
+<body>
+    <h1>π Calculator</h1>
+    
+    <table border="1">
+        <tr>
+            <td><label for="iterations">Number of iterations:</label></td>
+            <td><input type="number" name="iterations" id="iterations" value="1000000" min="1" max="10000000"></td>
+        </tr>
+        <tr>
+            <td><label for="result">Calculated π:</label></td>
+            <td><input type="text" name="result" id="result" readonly size="20"></td>
+        </tr>
+        <tr>
+            <td><label for="actual">Actual π:</label></td>
+            <td><input type="text" name="actual" id="actual" value="3.141592653589793" readonly size="20"></td>
+        </tr>
+        <tr>
+            <td><label for="difference">Difference:</label></td>
+            <td><input type="text" name="difference" id="difference" readonly size="20"></td>
+        </tr>
+        <tr>
+            <td><label for="time">Calculation time:</label></td>
+            <td><input type="text" name="time" id="time" readonly size="20"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="button" onclick="calculatePi()">Calculate π</button>
+                <button type="button" onclick="resetFields()">Reset</button>
+            </td>
+        </tr>
+    </table>
+    
+    <br>
+    
+    <table border="1">
+        <tr>
+            <th>Method</th>
+            <th>Formula</th>
+        </tr>
+        <tr>
+            <td>Leibniz</td>
+            <td>π/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 - ...</td>
+        </tr>
+    </table>
+
+    <script>
+        function calculatePi() {
+            let startTime = performance.now();
+
+            let iterations = Number(document.getElementById("iterations").value);
+            let pi = 0;
+            let sign = 1;
+
+            for (let i = 0; i < iterations; i++) {
+                pi += sign / (2 * i + 1);
+                sign = -sign;
+            }
+
+            pi = pi * 4;
+
+            let endTime = performance.now();
+            let calculationTime = ((endTime - startTime) / 1000).toFixed(4);
+
+            let actualPi = 3.141592653589793;
+            let difference = Math.abs(pi - actualPi);
+            
+            document.getElementById("result").value = pi;
+            document.getElementById("difference").value = difference;
+            document.getElementById("time").value = calculationTime + " seconds";
+            
+            console.log("Calculated π:", pi);
+            console.log("Difference from actual π:", difference);
+            console.log("Calculation time:", calculationTime, "seconds");
+        }
+        
+        function resetFields() {
+            document.getElementById("iterations").value = "1000000";
+            document.getElementById("result").value = "";
+            document.getElementById("difference").value = "";
+            document.getElementById("time").value = "";
+        }
+    </script>
+</body>
+</html>

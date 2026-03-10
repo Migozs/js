@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Task Manager</title>
+</head>
+<body>
+    <h1>My Tasks</h1>
+    
+    <input type="text" id="taskInput" placeholder="Enter new task">
+    <button onclick="addTask()">Add Task</button>
+    <button onclick="clearTasks()">Clear All</button>
+    
+    <h2>Task List:</h2>
+    <div id="taskList"></div>
+
+    <script>
+        let tasks = [];
+
+        function addTask() {
+            let input = document.getElementById('taskInput');
+            let taskText = input.value.trim();
+            
+            if (taskText) {
+                tasks.push(taskText);
+                displayTasks();
+                input.value = '';
+            }
+        }
+
+        function removeTask(index) {
+            tasks.splice(index, 1);
+            displayTasks();
+        }
+
+        function clearTasks() {
+            tasks = [];
+            displayTasks();
+        }
+
+        function displayTasks() {
+            let taskList = document.getElementById('taskList');
+            taskList.innerHTML = '';
+            
+            for (let i = 0; i < tasks.length; i++) {
+                let taskDiv = document.createElement('div');
+                taskDiv.innerHTML = tasks[i] + ' <button onclick="removeTask(' + i + ')">Remove</button>';
+                taskList.appendChild(taskDiv);
+            }
+        }
+    </script>
+</body>
+</html>

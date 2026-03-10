@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <title>Digital Clock</title>
+</head>
+<body>
+    <h1 id="clock"></h1>
+    <p id="message"></p>
+    <button id="startClock">Start Clock</button>
+    <button id="stopClock">Stop Clock</button>
+
+    <script>
+        let interval;
+        
+        document.getElementById("startClock").addEventListener("click", function() {
+            interval = setInterval(function() {
+                let time = new Date().toLocaleTimeString();
+                document.getElementById("clock").innerHTML = time;
+                
+                let seconds = new Date().getSeconds();
+                if(seconds === 0) {
+                    document.getElementById("message").innerHTML = "New minute started!";
+                    document.getElementById("message").style.color = "blue";
+                } else {
+                    document.getElementById("message").innerHTML = "";
+                }
+            }, 1000);
+        });
+        
+        document.getElementById("stopClock").addEventListener("click", function() {
+            clearInterval(interval);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JS</title>
+</head>
+<body>
+    <form>
+        <input type="button" onclick="add()" value="ADD">
+    </form>
+    <script>
+    function add() {
+        let num1 = Number(document.getElementById("num1").value);
+        let num2 = Number(document.getElementById("num2").value);
+        let sum = num1 + num2;
+        console.log(sum);
+        document.getElementById("sum").value = sum;
+    }
+    </script>
+</body>
+</html>

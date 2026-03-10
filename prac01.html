@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Javascript</title>
+</head>
+<body>
+    <form>
+        <label for="num1">Num1: </label>
+        <input type="text" name="num1" id="num1"><br>
+        <label for="num2">Num2: </label>
+        <input type="text" name="num2" id="num2"><br>
+        <label for="sum">Sum:</label>
+        <input type="text" name="sum" id="sum" readonly><br>
+        <input type="button" onclick="add()" value="ADD">
+    </form>
+
+    <form>
+        <label for="num3">Num3: </label>
+        <input type="text" name="num3" id="num3"><br>
+        <label for="num4">Num4: </label>
+        <input type="text" name="num4" id="num4"><br>
+        <label for="subtract">Subtract: </label>
+        <input type="text" name="subtract" id="subtract" readonly><br>
+        <input type="button" onclick="subtract()" value="SUBTRACT">
+    </form>
+
+    <script>
+        function add() {
+            let num1 = Number(document.getElementById("num1").value);
+            let num2 = Number(document.getElementById("num2").value);
+            
+            // Check if inputs are valid numbers
+            if (isNaN(num1) || isNaN(num2)) {
+                alert("Please enter valid numbers");
+                return;
+            }
+            
+            let sum = num1 + num2;
+            console.log("Sum:", sum);
+            document.getElementById("sum").value = sum;
+        }
+        
+        function subtract() {
+            let num3 = Number(document.getElementById("num3").value);
+            let num4 = Number(document.getElementById("num4").value);
+            
+            // Check if inputs are valid numbers
+            if (isNaN(num3) || isNaN(num4)) {
+                alert("Please enter valid numbers");
+                return;
+            }
+            
+            let subtract = num3 - num4;
+            console.log("Difference:", subtract);
+            document.getElementById("subtract").value = subtract;
+        }
+    </script>
+</body>
+</html>
